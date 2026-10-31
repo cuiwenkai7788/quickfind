@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="styles.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QuickFind</title>
+  </head>
+  <body>
+    <main class="container">
+      <!-- Header -->
+      <header class="header">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input
+            type="text"
+            id="search-input"
+            placeholder="搜索文件 (支持拼音、内容搜索用 content:关键词)"
+            autofocus
+          />
+          <div class="search-mode">
+            <button id="mode-filename" class="mode-btn active" title="文件名搜索">文件</button>
+            <button id="mode-content" class="mode-btn" title="内容搜索">内容</button>
+          </div>
+          <span id="result-count" class="result-count"></span>
+        </div>
+
+        <!-- Type filters -->
+        <div class="type-filters">
+          <button class="filter-btn active" data-type="all">全部</button>
+          <button class="filter-btn" data-type="document">文档</button>
+          <button class="filter-btn" data-type="image">图片</button>
+          <button class="filter-btn" data-type="video">视频</button>
+          <button class="filter-btn" data-type="audio">音频</button>
+          <button class="filter-btn" data-type="archive">压缩包</button>
+          <button class="filter-btn" data-type="code">代码</button>
+        </div>
+
+        <!-- Everything status -->
+        <div id="everything-status" class="everything-status"></div>
+      </header>
+
+      <!-- Main content area -->
+      <div class="main-content">
+        <!-- Results list -->
+        <div id="results" class="results"></div>
+
+        <!-- Preview panel -->
+        <div id="preview-panel" class="preview-panel hidden">
+          <div class="preview-header">
+            <span id="preview-title" class="preview-title"></span>
+            <button id="close-preview" class="close-btn">×</button>
+          </div>
+          <div id="preview-content" class="preview-content"></div>
+          <div id="preview-info" class="preview-info"></div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <div id="status" class="status">就绪</div>
+        <div class="shortcuts">
+          <span>↑↓ 选择</span>
+          <span>Enter 打开</span>
+          <span>Ctrl+Enter 打开位置</span>
+          <span>Tab 预览</span>
+          <span>ESC 清空</span>
+        </div>
+      </footer>
+
+      <!-- Settings panel -->
+      <div id="settings-panel" class="settings-panel hidden">
+        <div class="settings-header">
+          <h2>设置</h2>
+          <button id="close-settings" class="close-btn">×</button>
+        </div>
+
+        <div class="settings-content">
+          <div class="settings-section">
+            <h3>搜索引擎</h3>
+            <div class="settings-group">
+              <label>
+                <input type="checkbox" id="use-everything" />
+                使用 Everything 加速（需要已安装）
+              </label>
+              <span id="everything-check" class="hint"></span>
+            </div>
+
+            <div class="settings-group">
+              <label>
+                <input type="checkbox" id="enable-pinyin" checked />
+                启用拼音搜索
+              </label>
+              <span class="hint">支持拼音首字母和全拼</span>
+            </div>
+          </div>
+
+          <div class="settings-section">
+            <h3>索引设置</h3>
+            <div class="settings-group">
+              <label>索引目录</label>
+              <div id="index-roots" class="tag-list"></div>
+              <button id="add-root" class="btn-small">添加目录</button>
+            </div>
+
+            <div class="settings-group">
+              <label>
+                <input type="checkbox" id="auto-index" checked />
+                启动时自动索引
+              </label>
+            </div>
+
+            <div class="settings-group">
+              <label>
+                <input type="checkbox" id="watch-changes" checked />
+                实时监听文件变化
+              </label>
+            </div>
+          </div>
+
+          <div class="settings-section">
+            <h3>界面设置</h3>
+            <div class="settings-group">
+              <label>
+                <input type="checkbox" id="always-on-top" checked />
+                窗口置顶
+              </label>
+            </div>
+
+            <div class="settings-group">
+              <label>
+                <input type="checkbox" id="show-preview" checked />
+                显示预览面板
+              </label>
+            </div>
+
+            <div class="settings-group">
+              <label>快捷键</label>
+              <input type="text" id="hotkey" placeholder="Ctrl+Shift+F" />
+            </div>
+          </div>
+
+          <div class="settings-section">
+            <h3>插件管理</h3>
+            <div id="plugin-list" class="plugin-list"></div>
+            <button id="create-plugin" class="btn-small">创建插件</button>
+          </div>
+
+          <div class="settings-actions">
+            <button id="rebuild-index" class="btn-primary">重建索引</button>
+            <button id="save-settings" class="btn-secondary">保存设置</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Context menu -->
+      <div id="context-menu" class="context-menu hidden">
+        <button class="menu-item" data-action="open">打开</button>
+        <button class="menu-item" data-action="open-folder">打开位置</button>
+        <button class="menu-item" data-action="copy-path">复制路径</button>
+        <button class="menu-item" data-action="rename">重命名</button>
+        <button class="menu-item danger" data-action="delete">删除</button>
+      </div>
+    </main>
+
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>

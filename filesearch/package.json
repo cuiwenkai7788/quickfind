@@ -1,0 +1,18 @@
+{
+  "name": "quickfind",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "A fast file search tool for Windows",
+  "author": "QuickFind Team",
+  "license": "MIT",
+  "scripts": {
+    "tauri": "tauri",
+    "dev": "tauri dev",
+    "build": "tauri build",
+    "lint": "echo 'No linting configured'"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2"
+  }
+}
