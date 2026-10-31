@@ -22,7 +22,7 @@ jobs:
           node-version: '20'
 
       - name: Setup Rust
-        uses: dtolnay/rust-action@stable
+        uses: dtolnay/rust-toolchain@stable
 
       - name: Install dependencies
         run: npm install
@@ -32,8 +32,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tagName: ${{ github.ref_name }}
-          releaseName: 'QuickFind ${{ github.ref_name }}'
+          tagName: v0.2.0
+          releaseName: 'QuickFind v0.2.0'
           releaseBody: 'See CHANGELOG.md for details.'
           releaseDraft: true
           prerelease: false
@@ -51,7 +51,7 @@ jobs:
           node-version: '20'
 
       - name: Setup Rust
-        uses: dtolnay/rust-action@stable
+        uses: dtolnay/rust-toolchain@stable
 
       - name: Install system dependencies
         run: |
@@ -66,8 +66,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tagName: ${{ github.ref_name }}
-          releaseName: 'QuickFind ${{ github.ref_name }}'
+          tagName: v0.2.0
+          releaseName: 'QuickFind v0.2.0'
           releaseBody: 'See CHANGELOG.md for details.'
           releaseDraft: true
           prerelease: false
